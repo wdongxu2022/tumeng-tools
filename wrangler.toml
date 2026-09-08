@@ -1,0 +1,7 @@
+[pages]
+branch = "main"
+build_command = ""
+directory = ""
+dist = "."
+
+[env.production]

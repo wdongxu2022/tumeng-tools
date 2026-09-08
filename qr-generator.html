@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="container header-inner">
-            <a href="index.html" class="logo">🔷 图萌工具</a>
+            <a href="index.html" class="logo"><span>🔷</span>图萌工具</a>
             <nav>
                 <a href="index.html#tools">所有工具</a>
                 <a href="blog.html">博客</a>
@@ -21,6 +21,7 @@
 
     <main>
         <div class="container">
+            <a href="index.html" class="back-link">← 返回首页</a>
             <h1>在线二维码生成器</h1>
             <p class="subtitle">输入内容，一键生成高质量二维码</p>
 
@@ -61,14 +62,14 @@
                     <div class="form-group">
                         <label>边框大小</label>
                         <input type="range" id="qr-border" min="0" max="10" value="2">
-                        <span id="border-value">2 模块</span>
+                        <span id="border-value" style="font-size:0.82rem;color:var(--text-muted);margin-left:8px;">2 模块</span>
                     </div>
 
                     <div class="preset-buttons">
-                        <button class="preset-btn" onclick="setPreset('url')">网址</button>
-                        <button class="preset-btn" onclick="setPreset('wifi')">WiFi</button>
-                        <button class="preset-btn" onclick="setPreset('email')">邮箱</button>
-                        <button class="preset-btn" onclick="setPreset('text')">纯文本</button>
+                        <button class="preset-btn" onclick="setPreset('url')">🔗 网址</button>
+                        <button class="preset-btn" onclick="setPreset('wifi')">📶 WiFi</button>
+                        <button class="preset-btn" onclick="setPreset('email')">✉️ 邮箱</button>
+                        <button class="preset-btn" onclick="setPreset('text')">📝 纯文本</button>
                     </div>
 
                     <button class="generate-btn" onclick="generateQR()">生成二维码</button>
@@ -81,7 +82,7 @@
                     <div class="qr-actions">
                         <button class="action-btn" onclick="downloadQR('png')">📥 下载 PNG</button>
                         <button class="action-btn" onclick="downloadQR('svg')">📥 下载 SVG</button>
-                        <button class="action-btn" onclick="copyQR()">📋 复制到剪贴板</button>
+                        <button class="action-btn" onclick="copyQR()">📋 复制图片</button>
                     </div>
                     <div id="qr-info" class="qr-info"></div>
                 </div>
@@ -108,7 +109,7 @@
     <script>
         function getEccLevel() {
             const v = document.getElementById('qr-ecc').value;
-            return qrcodegen.QrCode.Ecc[v];
+            return { LOW: 0, MEDIUM: 1, QUARTILE: 2, HIGH: 3 }[v];
         }
 
         function generateQR() {
@@ -148,7 +149,7 @@
 
         function showInfo(qr) {
             const info = document.getElementById('qr-info');
-            info.innerHTML = `<p>QR版本: ${qr.version} | 尺寸: ${qr.size}×${qr.size} 模块 | 容错级别: ${document.getElementById('qr-ecc').selectedOptions[0].text}</p>`;
+            info.innerHTML = '<p>QR版本: ' + qr.version + ' | 尺寸: ' + qr.size + '×' + qr.size + ' 模块 | 容错级别: ' + document.getElementById('qr-ecc').selectedOptions[0].text + '</p>';
         }
 
         function downloadQR(format) {
@@ -163,12 +164,12 @@
                 const border = parseInt(document.getElementById('qr-border').value);
                 const darkColor = document.getElementById('qr-color-dark').value;
                 const lightColor = document.getElementById('qr-color-light').value;
-                let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${qr.size + border*2} ${qr.size + border*2}">`;
-                svg += `<rect width="${qr.size + border*2}" height="${qr.size + border*2}" fill="${lightColor}"/>`;
+                let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + (qr.size + border*2) + ' ' + (qr.size + border*2) + '">';
+                svg += '<rect width="' + (qr.size + border*2) + '" height="' + (qr.size + border*2) + '" fill="' + lightColor + '"/>';
                 for (let y = 0; y < qr.size; y++) {
                     for (let x = 0; x < qr.size; x++) {
                         if (qr.getModule(x, y)) {
-                            svg += `<rect x="${x + border}" y="${y + border}" width="1" height="1" fill="${darkColor}"/>`;
+                            svg += '<rect x="' + (x + border) + '" y="' + (y + border) + '" width="1" height="1" fill="' + darkColor + '"/>';
                         }
                     }
                 }

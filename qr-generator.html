@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线二维码生成器 - 免费高清QR码制作工具 | 图萌工具</title>
+    <meta name="description" content="免费在线二维码生成器，支持文字、网址、WiFi等快速生成高清二维码。可自定义颜色、尺寸、容错率，支持PNG/SVG格式下载。">
+    <meta name="keywords" content="二维码生成器,QR码,二维码制作,在线二维码,免费工具">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">🔷 图萌工具</a>
+            <nav>
+                <a href="index.html#tools">所有工具</a>
+                <a href="blog.html">博客</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>在线二维码生成器</h1>
+            <p class="subtitle">输入内容，一键生成高质量二维码</p>
+
+            <div class="qr-generator">
+                <div class="qr-input-section">
+                    <div class="form-group">
+                        <label for="qr-text">输入内容</label>
+                        <textarea id="qr-text" placeholder="请输入文字、网址、邮箱或WiFi信息..." rows="3">https://tumeng.ccwu.cc</textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>容错级别</label>
+                            <select id="qr-ecc">
+                                <option value="LOW">低 (约7%)</option>
+                                <option value="MEDIUM" selected>中 (约15%)</option>
+                                <option value="QUARTILE">四分之三 (约25%)</option>
+                                <option value="HIGH">高 (约30%)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>尺寸 (像素)</label>
+                            <input type="number" id="qr-size" value="300" min="100" max="1000" step="50">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>前景色</label>
+                            <input type="color" id="qr-color-dark" value="#000000">
+                        </div>
+                        <div class="form-group">
+                            <label>背景色</label>
+                            <input type="color" id="qr-color-light" value="#FFFFFF">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>边框大小</label>
+                        <input type="range" id="qr-border" min="0" max="10" value="2">
+                        <span id="border-value">2 模块</span>
+                    </div>
+
+                    <div class="preset-buttons">
+                        <button class="preset-btn" onclick="setPreset('url')">网址</button>
+                        <button class="preset-btn" onclick="setPreset('wifi')">WiFi</button>
+                        <button class="preset-btn" onclick="setPreset('email')">邮箱</button>
+                        <button class="preset-btn" onclick="setPreset('text')">纯文本</button>
+                    </div>
+
+                    <button class="generate-btn" onclick="generateQR()">生成二维码</button>
+                </div>
+
+                <div class="qr-output-section">
+                    <div id="qr-result">
+                        <canvas id="qr-canvas"></canvas>
+                    </div>
+                    <div class="qr-actions">
+                        <button class="action-btn" onclick="downloadQR('png')">📥 下载 PNG</button>
+                        <button class="action-btn" onclick="downloadQR('svg')">📥 下载 SVG</button>
+                        <button class="action-btn" onclick="copyQR()">📋 复制到剪贴板</button>
+                    </div>
+                    <div id="qr-info" class="qr-info"></div>
+                </div>
+            </div>
+
+            <div class="ad-placeholder">
+                <p>— 广告位 —</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">服务条款</a>
+                <a href="contact.html">联系我们</a>
+            </div>
+            <p>&copy; 2026 图萌工具 (tumeng.ccwu.cc)</p>
+        </div>
+    </footer>
+
+    <script src="assets/qrcodegen.js"></script>
+    <script>
+        function getEccLevel() {
+            const v = document.getElementById('qr-ecc').value;
+            return qrcodegen.QrCode.Ecc[v];
+        }
+
+        function generateQR() {
+            const text = document.getElementById('qr-text').value.trim();
+            if (!text) { alert('请输入内容'); return; }
+            try {
+                const ecc = getEccLevel();
+                const qr = qrcodegen.QrCode.encodeText(text, ecc);
+                drawQR(qr);
+                showInfo(qr);
+            } catch (e) {
+                alert('内容过长，无法生成二维码。请缩短输入或选择更高的容错级别。');
+            }
+        }
+
+        function drawQR(qr) {
+            const scale = parseInt(document.getElementById('qr-size').value) / qr.size;
+            const border = parseInt(document.getElementById('qr-border').value);
+            const darkColor = document.getElementById('qr-color-dark').value;
+            const lightColor = document.getElementById('qr-color-light').value;
+            const canvas = document.getElementById('qr-canvas');
+            const size = qr.size + border * 2;
+            canvas.width = size * scale;
+            canvas.height = size * scale;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = lightColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = darkColor;
+            for (let y = 0; y < qr.size; y++) {
+                for (let x = 0; x < qr.size; x++) {
+                    if (qr.getModule(x, y)) {
+                        ctx.fillRect((x + border) * scale, (y + border) * scale, scale, scale);
+                    }
+                }
+            }
+        }
+
+        function showInfo(qr) {
+            const info = document.getElementById('qr-info');
+            info.innerHTML = `<p>QR版本: ${qr.version} | 尺寸: ${qr.size}×${qr.size} 模块 | 容错级别: ${document.getElementById('qr-ecc').selectedOptions[0].text}</p>`;
+        }
+
+        function downloadQR(format) {
+            const canvas = document.getElementById('qr-canvas');
+            if (format === 'png') {
+                const link = document.createElement('a');
+                link.download = 'qrcode.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } else if (format === 'svg') {
+                const qr = qrcodegen.QrCode.encodeText(document.getElementById('qr-text').value.trim(), getEccLevel());
+                const border = parseInt(document.getElementById('qr-border').value);
+                const darkColor = document.getElementById('qr-color-dark').value;
+                const lightColor = document.getElementById('qr-color-light').value;
+                let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${qr.size + border*2} ${qr.size + border*2}">`;
+                svg += `<rect width="${qr.size + border*2}" height="${qr.size + border*2}" fill="${lightColor}"/>`;
+                for (let y = 0; y < qr.size; y++) {
+                    for (let x = 0; x < qr.size; x++) {
+                        if (qr.getModule(x, y)) {
+                            svg += `<rect x="${x + border}" y="${y + border}" width="1" height="1" fill="${darkColor}"/>`;
+                        }
+                    }
+                }
+                svg += '</svg>';
+                const blob = new Blob([svg], {type: 'image/svg+xml'});
+                const link = document.createElement('a');
+                link.download = 'qrcode.svg';
+                link.href = URL.createObjectURL(blob);
+                link.click();
+            }
+        }
+
+        function copyQR() {
+            const canvas = document.getElementById('qr-canvas');
+            canvas.toBlob(blob => {
+                navigator.clipboard.write([new ClipboardItem({'image/png': blob})]).then(() => {
+                    alert('二维码已复制到剪贴板！');
+                }).catch(() => alert('复制失败，请右键保存图片'));
+            });
+        }
+
+        function setPreset(type) {
+            const textarea = document.getElementById('qr-text');
+            if (type === 'url') textarea.value = 'https://tumeng.ccwu.cc';
+            else if (type === 'wifi') textarea.value = 'WIFI:T:WPA;S:MyNetwork;P:MyPassword;;';
+            else if (type === 'email') textarea.value = 'mailto:example@example.com?subject=Hello&body=Message';
+            else if (type === 'text') textarea.value = '这是一段测试文字 / This is a test message';
+            generateQR();
+        }
+
+        document.getElementById('qr-border').addEventListener('input', function() {
+            document.getElementById('border-value').textContent = this.value + ' 模块';
+        });
+
+        ['qr-text', 'qr-ecc', 'qr-size', 'qr-color-dark', 'qr-color-light', 'qr-border'].forEach(id => {
+            document.getElementById(id).addEventListener('change', generateQR);
+            document.getElementById(id).addEventListener('input', generateQR);
+        });
+
+        window.addEventListener('load', generateQR);
+    </script>
+</body>
+</html>

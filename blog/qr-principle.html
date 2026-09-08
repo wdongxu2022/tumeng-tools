@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二维码原理详解 - QR Code技术科普 | 图萌工具博客</title>
+    <meta name="description" content="深入了解QR二维码的技术原理：编码方式、纠错机制、版本规格，从入门到精通的完整技术科普文章。">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="../index.html" class="logo">🔷 图萌工具</a>
+            <nav>
+                <a href="../index.html#tools">工具</a>
+                <a href="../blog.html">博客</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="article-content">
+                <h1>二维码（QR Code）原理详解：从诞生到普及的40年</h1>
+                <div class="article-meta">发布日期：2026-09-08 &nbsp;|&nbsp; 分类：技术科普 &nbsp;|&nbsp; 阅读时间：8分钟</div>
+
+                <h2>什么是QR Code？</h2>
+                <p>QR Code（Quick Response Code，快速响应码）是一种二维条码，由日本 Denso Wave 公司于1994年发明。与传统的条形码不同，QR Code 可以在水平和垂直两个方向存储信息，因此能够容纳更多的数据。</p>
+                <p>QR Code 的标准由 ISO/IEC 18004 定义，支持数字、字母数字、字节/二进制、汉字等多种编码模式，可存储最多约7000个数字或4000个字符的数据。</p>
+
+                <h2>QR Code 的结构组成</h2>
+                <p>一个标准的 QR Code 符号由以下几个核心部分组成：</p>
+                <ul>
+                    <li><strong>定位图案（Finder Pattern）</strong>：三个位于角落的大方块，用于帮助扫描设备快速定位二维码的位置和方向</li>
+                    <li><strong>对齐图案（Alignment Pattern）</strong>：较小的方块，用于校正因打印或显示产生的畸变</li>
+                    <li><strong>时序图案（Timing Pattern）</strong>：连接定位图案的黑白交替线，用于确定模块的坐标</li>
+                    <li><strong>格式信息（Format Information）</strong>：存储容错级别和掩码模式的信息</li>
+                    <li><strong>版本信息（Version Information）</strong>：版本7及以上的二维码包含的版本号信息</li>
+                    <li><strong>数据区域</strong>：实际存储用户数据的部分</li>
+                </ul>
+
+                <h2>QR Code 的版本与尺寸</h2>
+                <p>QR Code 共有40个版本（Version 1-40），每个版本对应不同的尺寸：</p>
+                <ul>
+                    <li>Version 1：21×21 模块</li>
+                    <li>Version 2：25×25 模块</li>
+                    <li>每增加一个版本，边长增加4个模块</li>
+                    <li>Version 40：177×177 模块（最大尺寸）</li>
+                </ul>
+                <p>版本的选择取决于要编码的数据量和所选的容错级别。版本越高，能存储的数据越多，但二维码也越大。</p>
+
+                <h2>四种容错级别</h2>
+                <p>QR Code 采用 Reed-Solomon 纠错算法，提供了四个级别的容错能力：</p>
+                <ul>
+                    <li><strong>L级（Low）</strong>：可恢复约7%的损伤</li>
+                    <li><strong>M级（Medium）</strong>：可恢复约15%的损伤（最常用）</li>
+                    <li><strong>Q级（Quartile）</strong>：可恢复约25%的损伤</li>
+                    <li><strong>H级（High）</strong>：可恢复约30%的损伤</li>
+                </ul>
+                <p>容错级别越高，可用于存储数据的空间就越少，但二维码的抗损坏能力越强。这也是为什么我们可以在二维码中间嵌入 Logo 的原因之一。</p>
+
+                <h2>编码模式</h2>
+                <p>QR Code 支持多种编码模式来优化存储空间：</p>
+                <ul>
+                    <li><strong>数字模式</strong>：专门编码纯数字，效率最高（3.33比特/位）</li>
+                    <li><strong>字母数字模式</strong>：编码0-9、A-Z（大写）、空格及少数符号</li>
+                    <li><strong>字节模式</strong>：编码任意8位数据，支持UTF-8中文</li>
+                    <li><strong>汉字模式</strong>：专门针对日文汉字优化（部分版本支持）</li>
+                </ul>
+                <p>智能的编码选择可以让同一个内容在不同模式下产生不同大小的二维码，这也是为什么有时候重新编码可以改善二维码的尺寸。</p>
+
+                <h2>QR Code 的应用与发展</h2>
+                <p>自1994年问世以来，QR Code 已从日本的工业应用发展成为全球主流的信息载体：</p>
+                <ul>
+                    <li><strong>移动支付</strong>：支付宝、微信支付等推动QR码在中国乃至全球的普及</li>
+                    <li><strong>信息存储</strong>：电子票务、会员卡片、产品追溯等</li>
+                    <li><strong>身份认证</strong>：电子护照、数字身份证等</li>
+                    <li><strong>物联网</strong>：智能家居设备配网、工业设备标识</li>
+                    <li><strong>营销推广</strong>：广告二维码、社交媒体分享</li>
+                </ul>
+                <p>如今，几乎每部智能手机都内置了QR码扫描功能，QR Code 已经成为连接物理世界与数字世界最重要的桥梁之一。</p>
+
+                <h2>总结</h2>
+                <p>QR Code 之所以能够成功，得益于其简洁而高效的设计：标准化的结构、可靠的纠错机制、灵活的编码方式和开放的标准。作为开发者，理解QR Code 的原理不仅有助于正确使用相关工具，也为开发更高级的应用奠定了基础。</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../privacy.html">隐私政策</a>
+                <a href="../terms.html">服务条款</a>
+                <a href="../contact.html">联系我们</a>
+            </div>
+            <p>&copy; 2026 图萌工具 (tumeng.ccwu.cc)</p>
+        </div>
+    </footer>
+</body>
+</html>

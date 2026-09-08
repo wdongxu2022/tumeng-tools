@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR码容错率详解 - 为什么有些二维码破损还能扫 | 图萌工具博客</title>
+    <meta name="description" content="深入了解QR二维码的Reed-Solomon纠错算法，四种容错级别的原理、应用场景和实际效果对比。">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="../index.html" class="logo">🔷 图萌工具</a>
+            <nav>
+                <a href="../index.html#tools">工具</a>
+                <a href="../blog.html">博客</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="article-content">
+                <h1>QR 码容错率详解：为什么有些二维码破损还能扫？</h1>
+                <div class="article-meta">发布日期：2026-09-08 &nbsp;|&nbsp; 分类：技术科普 &nbsp;|&nbsp; 阅读时间：6分钟</div>
+
+                <h2>什么是容错率？</h2>
+                <p>QR Code 的容错率是指二维码在部分损坏、遮挡或污染的情况下，仍然能够被正确扫描和解码的能力。这一特性源于 QR Code 标准中内置的 Reed-Solomon 纠错算法，由美国数学家 Irving Reed 和 Gustave Solomon 于 1960 年代发明。</p>
+                <p>简单来说，QR Code 在编码数据时，会额外生成一些「校验数据」附加在原始数据后面。当二维码部分损坏时，扫描器可以利用这些校验数据重建丢失的信息。</p>
+
+                <h2>四种容错级别</h2>
+                <p>QR Code 标准定义了四个容错级别，每个级别代表不同的错误恢复能力：</p>
+                <table style="width:100%;border-collapse:collapse;margin:20px 0;">
+                    <tr style="background:#667eea;color:white;"><th style="padding:10px;border:1px solid #ddd;">级别</th><th style="padding:10px;border:1px solid #ddd;">可恢复比例</th><th style="padding:10px;border:1px solid #ddd;">数据容量影响</th><th style="padding:10px;border:1px solid #ddd;">典型应用</th></tr>
+                    <tr><td style="padding:10px;border:1px solid #ddd;text-align:center;font-weight:bold;">L (Low)</td><td style="padding:10px;border:1px solid #ddd;text-align:center;">约 7%</td><td style="padding:10px;border:1px solid #ddd;text-align:center;">最小</td><td style="padding:10px;border:1px solid #ddd;">纯文本、短链接</td></tr>
+                    <tr style="background:#f7fafc;"><td style="padding:10px;border:1px solid #ddd;text-align:center;font-weight:bold;">M (Medium)</td><td style="padding:10px;border:1px solid #ddd;text-align:center;">约 15%</td><td style="padding:10px;border:1px solid #ddd;text-align:center;">较小</td><td style="padding:10px;border:1px solid #ddd;">一般应用（默认）</td></tr>
+                    <tr><td style="padding:10px;border:1px solid #ddd;text-align:center;font-weight:bold;">Q (Quartile)</td><td style="padding:10px;border:1px solid #ddd;text-align:center;">约 25%</td><td style="padding:10px;border:1px solid #ddd;text-align:center;">中等</td><td style="padding:10px;border:1px solid #ddd;">带 Logo 的二维码</td></tr>
+                    <tr style="background:#f7fafc;"><td style="padding:10px;border:1px solid #ddd;text-align:center;font-weight:bold;">H (High)</td><td style="padding:10px;border:1px solid #ddd;text-align:center;">约 30%</td><td style="padding:10px;border:1px solid #ddd;text-align:center;">较大</td><td style="padding:10px;border:1px solid #ddd;">创意二维码、户外广告</td></tr>
+                </table>
+
+                <h2>为什么需要高容错？</h2>
+                <p>高容错级别在以下场景中尤为重要：</p>
+                <ul>
+                    <li><strong>嵌入 Logo</strong>：Logo 会遮挡二维码中心区域，至少需要 Q 级或 H 级</li>
+                    <li><strong>户外广告</strong>：日晒雨淋可能导致二维码表面损伤</li>
+                    <li><strong>印刷品</strong>：印刷误差、纸张纹理可能影响扫描</li>
+                    <li><strong>曲面粘贴</strong>：贴在瓶身、杯子上时可能发生变形</li>
+                    <li><strong>大屏幕显示</strong>：像素网格可能导致轻微失真</li>
+                </ul>
+
+                <h2>容错率的权衡</h2>
+                <p>选择容错级别需要考虑数据容量和抗损能力的平衡：</p>
+                <ul>
+                    <li>容错级别越高，可用于存储数据的空间越少</li>
+                    <li>对于相同数据量，高容错级别的二维码会更大（版本更高）</li>
+                    <li>建议使用「能满足需求的最小容错级别」以优化二维码尺寸</li>
+                </ul>
+                <p>使用本站的<strong><a href="../qr-generator.html">二维码生成器</a></strong>，你可以自由切换四种容错级别，实时查看二维码尺寸变化。</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../privacy.html">隐私政策</a>
+                <a href="../terms.html">服务条款</a>
+                <a href="../contact.html">联系我们</a>
+            </div>
+            <p>&copy; 2026 图萌工具 (tumeng.ccwu.cc)</p>
+        </div>
+    </footer>
+</body>
+</html>

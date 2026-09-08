@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare Pages + AdSense 零成本建站盈利指南 | 图萌工具博客</title>
+    <meta name="description" content="手把手教你用Cloudflare Pages免费托管网站，结合Google AdSense实现被动收入。无需服务器，无需域名成本（可使用免费子域名），10分钟上线。">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="../index.html" class="logo">🔷 图萌工具</a>
+            <nav>
+                <a href="../index.html#tools">工具</a>
+                <a href="../blog.html">博客</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="article-content">
+                <h1>如何用 Cloudflare Pages + AdSense 搭建零成本网站赚钱</h1>
+                <div class="article-meta">发布日期：2026-09-08 &nbsp;|&nbsp; 分类：建站教程 &nbsp;|&nbsp; 阅读时间：10分钟</div>
+
+                <h2>为什么选择 Cloudflare Pages + AdSense 组合？</h2>
+                <p>对于想要通过网站获得被动收入的个人创作者来说，Cloudflare Pages 和 Google AdSense 是最佳的免费组合：</p>
+                <ul>
+                    <li><strong>Cloudflare Pages</strong>：永久免费静态网站托管，全球 CDN 加速，自动 HTTPS，每日 500 次构建</li>
+                    <li><strong>Google AdSense</strong>：全球最大广告平台，按点击付费（CPC），月收入可达数百至数千美元</li>
+                    <li><strong>零成本</strong>：无需购买服务器，无需技术门槛，纯前端网站即可运行</li>
+                </ul>
+
+                <h2>第一步：准备 Cloudflare 账号</h2>
+                <p>访问 <a href="https://dash.cloudflare.com/sign-up" target="_blank">dash.cloudflare.com</a> 注册免费账号。Cloudflare 免费版已包含：</p>
+                <ul>
+                    <li>DNS 管理（可添加自定义域名）</li>
+                    <li>全球 CDN 加速</li>
+                    <li>免费 SSL 证书</li>
+                    <li>基础的 DDoS 防护</li>
+                </ul>
+                <p>如果你有自定义域名（如本博客使用的 .cc 域名），需要在 Cloudflare 中添加 DNS 记录指向 Pages 项目。</p>
+
+                <h2>第二步：创建 GitHub 仓库</h2>
+                <p>在 <a href="https://github.com" target="_blank">GitHub.com</a> 创建一个新的公共仓库，将你的网站代码上传。推荐的项目结构：</p>
+                <ul>
+                    <li><code>index.html</code> — 首页</li>
+                    <li><code>assets/style.css</code> — 样式文件</li>
+                    <li><code>assets/*.js</code> — 工具脚本</li>
+                    <li><code>blog/</code> — 博客文章目录</li>
+                    <li><code>README.md</code> — 项目说明</li>
+                </ul>
+
+                <h2>第三步：连接 Cloudflare Pages</h2>
+                <p>登录 Cloudflare Dashboard，进入 Workers & Pages → Create application → Pages → Connect to Git。选择你的 GitHub 仓库，配置构建设置：</p>
+                <ul>
+                    <li><strong>构建命令</strong>：留空（纯静态网站无需构建）</li>
+                    <li><strong>输出目录</strong>：留空（默认根目录）</li>
+                    <li><strong>构建缓存</strong>：默认即可</li>
+                </ul>
+                <p>点击 Save and Deploy，Cloudflare 会自动部署你的网站。每次推送到 GitHub 都会触发重新部署。</p>
+
+                <h2>第四步：绑定自定义域名</h2>
+                <p>在 Cloudflare Pages 的项目设置中，进入 Custom Domains → Set up a custom domain。输入你的域名后，Cloudflare 会自动添加所需的 CNAME 记录。确保你的域名 DNS 已托管在 Cloudflare 上。</p>
+
+                <h2>第五步：申请 Google AdSense</h2>
+                <p>AdSense 申请注意事项：</p>
+                <ul>
+                    <li><strong>网站内容</strong>：至少 15-30 篇原创高质量文章，纯工具站通过率极低</li>
+                    <li><strong>网站年龄</strong>：建议域名注册满 3 个月以上再申请</li>
+                    <li><strong>隐私页面</strong>：必须包含隐私政策、关于页面、联系我们页面</li>
+                    <li><strong>用户体验</strong>：页面加载快、移动端适配良好</li>
+                </ul>
+                <p>申请通过后，在 Cloudflare Pages 的自定义域名下插入 AdSense 代码即可开始盈利。</p>
+
+                <h2>盈利策略建议</h2>
+                <ul>
+                    <li><strong>工具+内容组合</strong>：实用工具吸引流量，博客文章提供内容深度，两者结合提高 AdSense 通过率</li>
+                    <li><strong>中文 SEO</strong>：针对中文关键词优化，竞争相对较小</li>
+                    <li><strong>持续更新</strong>：定期添加新工具和文章，保持网站活跃度</li>
+                </ul>
+                <p>本网站就是按照此模式构建的——以二维码生成器为核心工具，搭配 QR 码技术博客文章，目标是通过 AdSense 实现被动收入。</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../privacy.html">隐私政策</a>
+                <a href="../terms.html">服务条款</a>
+                <a href="../contact.html">联系我们</a>
+            </div>
+            <p>&copy; 2026 图萌工具 (tumeng.ccwu.cc)</p>
+        </div>
+    </footer>
+</body>
+</html>

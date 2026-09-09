@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纯前端项目最佳实践 - 无需后端的 Web 开发 | 图萌工具博客</title>
+    <meta name="description" "content="纯前端项目架构设计：静态网站部署、API 代理、数据存储等最佳实践总结。">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header><div class="container header-inner"><a href="../index.html" class="logo">🔷 图萌工具</a><nav><a href="../index.html#tools">工具</a><a href="../blog.html">博客</a></nav></div></header>
+    <main><div class="container"><div class="article-content">
+        <h1>纯前端项目最佳实践：无需后端的 Web 应用开发</h1>
+        <div class="article-meta">发布日期：2026-09-08 &nbsp;|&nbsp; 分类：架构设计 &nbsp;|&nbsp; 阅读时间：7分钟</div>
+        <h2>什么是纯前端项目？</h2>
+        <p>纯前端项目是指所有逻辑都在浏览器端执行的 Web 应用，不依赖服务端运行代码。这类项目的优势是部署简单、成本低、安全性高。</p>
+        <h2>适用场景</h2>
+        <ul>
+            <li>在线工具类网站（如计算器、转换器、生成器）</li>
+            <li>个人博客和内容站</li>
+            <li>数据可视化和仪表板</li>
+            <li>表单和数据收集（配合第三方服务）</li>
+        </ul>
+        <h2>推荐技术栈</h2>
+        <table style="width:100%;border-collapse:collapse;margin:20px 0">
+            <tr style="background:var(--bg)"><td style="padding:10px;border:1px solid var(--border)">用途</td><td style="padding:10px;border:1px solid var(--border)">推荐方案</td><td style="padding:10px;border:1px solid var(--border)">说明</td></tr>
+            <tr><td style="padding:10px;border:1px solid var(--border)">部署</td><td style="padding:10px;border:1px solid var(--border)">Cloudflare Pages</td><td style="padding:10px;border:1px solid var(--border)">免费无限带宽</td></tr>
+            <tr style="background:var(--bg)"><td style="padding:10px;border:1px solid var(--border)">数据处理</td><td style="padding:10px;border:1px solid var(--border)">localStorage / IndexedDB</td><td style="padding:10px;border:1px solid var(--border)">浏览器本地存储</td></tr>
+            <tr><td style="padding:10px;border:1px solid var(--border)">表单提交</td><td style="padding:10px;border:1px solid var(--border)">Formspree / EmailJS</td><td style="padding:10px;border:1px solid var(--border)">免费表单服务</td></tr>
+            <tr style="background:var(--bg)"><td style="padding:10px;border:1px solid var(--border)">外部 API</td><td style="padding:10px;border:1px solid var(--border)">fetch + CORS</td><td style="padding:10px;border:1px solid var(--border)">直接使用或代理</td></tr>
+        </table>
+        <h2>安全注意事项</h2>
+        <ul>
+            <li>不要在客户端代码中硬编码 API 密钥</li>
+            <li>对用户输入进行严格的验证和转义</li>
+            <li>使用 HTTPS 确保传输安全</li>
+            <li>定期审查和更新第三方依赖</li>
+        </ul>
+        <h2>性能优化要点</h2>
+        <ul>
+            <li>最小化 JS/CSS 文件大小</li>
+            <li>使用 Code Splitting 按需加载</li>
+            <li>图片使用 WebP 格式 + 懒加载</li>
+            <li>启用浏览器缓存和 CDN</li>
+        </ul>
+    </div></div></main>
+    <footer><div class="container"><div class="footer-links"><a href="../privacy.html">隐私政策</a><a href="../terms.html">服务条款</a><a href="../contact.html">联系我们</a></div><p>&copy; 2026 图萌工具</p></div></footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条码格式详解 - QR/EAN/UPC对比 | 图萌工具博客</title>
+    <meta name="description" content="全面了解条码类型：QR码、EAN-13、UPC-A的区别、应用场景和编码原理。">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header><div class="container header-inner"><a href="../index.html" class="logo">🔷 图萌工具</a><nav><a href="../index.html#tools">工具</a><a href="../blog.html">博客</a></nav></div></header>
+    <main><div class="container"><div class="article-content">
+        <h1>条码格式详解：QR码 vs EAN-13 vs UPC-A，一文看懂所有条码类型</h1>
+        <div class="article-meta">发布日期：2026-09-08 &nbsp;|&nbsp; 分类：技术科普 &nbsp;|&nbsp; 阅读时间：6分钟</div>
+        <h2>什么是条码？</h2>
+        <p>条码（Barcode）是一种将数据信息通过特定图形符号进行视觉化表示的技术。自1974年第一款 UPC-A 条码被用在口香糖包装上以来，条码已经渗透到生活的方方面面。</p>
+        <h2>QR Code 二维码</h2>
+        <p>QR Code 由日本 Denso Wave 公司于1994年发明，是一种矩阵式二维条码。它最大的特点是可以在水平和垂直两个方向存储信息，容量远大于传统一维条码。</p>
+        <ul>
+            <li>容量：最多可存储 7,089 个数字或 4,296 个字母数字字符</li>
+            <li>容错：四种级别，最高可恢复 30% 的损坏</li>
+            <li>扫描：支持 360° 任意角度扫描</li>
+            <li>应用：支付、认证、信息存储、物联网等</li>
+        </ul>
+        <h2>EAN-13 商品条码</h2>
+        <p>EAN-13（European Article Number）是全球最通用的商品条码标准，由13位数字组成。广泛用于零售商品的标识。</p>
+        <ul>
+            <li>结构：前缀码（3位）+ 厂商代码（4-5位）+ 商品代码（4-5位）+ 校验码（1位）</li>
+            <li>中国前缀：690-699</li>
+            <li>特点：一维条码，需要激光扫描器</li>
+        </ul>
+        <h2>UPC-A 北美条码</h2>
+        <p>UPC-A 是美国统一代码委员会制定的条码标准，主要由北美地区的零售行业使用。共12位数字，结构类似于 EAN-13 但少一位。</p>
+        <ul>
+            <li>结构：系统字符（1位）+ 厂商代码（5位）+ 商品代码（5位）+ 校验码（1位）</li>
+            <li>应用：北美超市、电商平台</li>
+            <li>兼容性：UPC-A 可以转换为 EAN-13（在前方补0）</li>
+        </ul>
+        <h2>三者对比</h2>
+        <table style="width:100%;border-collapse:collapse;margin:20px 0">
+            <tr style="background:var(--bg)"><td style="padding:10px;border:1px solid var(--border)">特性</td><td style="padding:10px;border:1px solid var(--border)">QR Code</td><td style="padding:10px;border:1px solid var(--border)">EAN-13</td><td style="padding:10px;border:1px solid var(--border)">UPC-A</td></tr>
+            <tr><td style="padding:10px;border:1px solid var(--border)">位数</td><td style="padding:10px;border:1px solid var(--border)">可变（最多7089数字）</td><td style="padding:10px;border:1px solid var(--border)">13位</td><td style="padding:10px;border:1px solid var(--border)">12位</td></tr>
+            <tr style="background:var(--bg)"><td style="padding:10px;border:1px solid var(--border)">类型</td><td style="padding:10px;border:1px solid var(--border)">二维</td><td style="padding:10px;border:1px solid var(--border)">一维</td><td style="padding:10px;border:1px solid var(--border)">一维</td></tr>
+            <tr><td style="padding:10px;border:1px solid var(--border)">主要用途</td><td style="padding:10px;border:1px solid var(--border)">信息存储/支付</td><td style="padding:10px;border:1px solid var(--border)">商品标识</td><td style="padding:10px;border:1px solid var(--border)">商品标识</td></tr>
+            <tr style="background:var(--bg)"><td style="padding:10px;border:1px solid var(--border)">扫描方式</td><td style="padding:10px;border:1px solid var(--border)">摄像头/扫码枪</td><td style="padding:10px;border:1px solid var(--border)">激光扫描器</td><td style="padding:10px;border:1px solid var(--border)">激光扫描器</td></tr>
+        </table>
+        <h2>总结</h2>
+        <p>QR Code 适合需要存储大量信息的场景，而 EAN-13 和 UPC-A 主要用于商品流通领域。理解各条码类型的差异，有助于在实际应用中做出正确的选择。</p>
+    </div></div></main>
+    <footer><div class="container"><div class="footer-links"><a href="../privacy.html">隐私政策</a><a href="../terms.html">服务条款</a><a href="../contact.html">联系我们</a></div><p>&copy; 2026 图萌工具</p></div></footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare Workers 入门指南 - 免费边缘计算平台 | 图萌工具博客</title>
+    <meta name="description" content="Cloudflare Workers 是免费的边缘计算平台，支持自定义域名、静态托管、API路由等功能，适合搭建个人工具和网站。">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header><div class="container header-inner"><a href="../index.html" class="logo">🔷 图萌工具</a><nav><a href="../index.html#tools">工具</a><a href="../blog.html">博客</a></nav></div></header>
+    <main><div class="container"><div class="article-content">
+        <h1>Cloudflare Workers 入门指南：从零搭建免费在线工具网站</h1>
+        <div class="article-meta">发布日期：2026-09-08 &nbsp;|&nbsp; 分类：建站教程 &nbsp;|&nbsp; 阅读时间：10分钟</div>
+        <h2>什么是 Cloudflare Workers？</h2>
+        <p>Cloudflare Workers 是 Cloudflare 提供的边缘计算平台，允许你在全球 300+ 个数据中心运行 JavaScript/TypeScript 代码。其免费额度非常慷慨：每天 10 万次请求、每月 10GB 读取/1GB 写入。</p>
+        <h2>Workers 适合做什么？</h2>
+        <ul>
+            <li><strong>静态网站托管</strong>：通过 Wrangler CLI 部署静态 HTML/CSS/JS 文件</li>
+            <li><strong>API 代理</strong>：绕过 CORS 限制，代理第三方 API</li>
+            <li><strong>边缘重定向</strong>：根据地理位置或用户代理进行智能路由</li>
+            <li><strong>小型 Web 应用</strong>：运行纯前端的在线工具</li>
+        </ul>
+        <h2>部署步骤</h2>
+        <h3>第一步：安装 Wrangler</h3>
+        <p>Wrangler 是 Cloudflare 官方 CLI 工具，用于管理 Workers 项目。</p>
+        <pre style="background:var(--bg);padding:16px;border-radius:var(--radius-sm);overflow-x:auto"><code>npx wrangler login
+npx wrangler init my-project</code></pre>
+        <h3>第二步：配置项目</h3>
+        <p>在 wrangler.toml 中配置 Worker 名称、路由和静态资产目录。</p>
+        <pre style="background:var(--bg);padding:16px;border-radius:var(--radius-sm);overflow-x:auto"><code>[pages]
+branch = "main"
+dist = "."
+
+[env.production]</code></pre>
+        <h3>第三步：部署</h3>
+        <pre style="background:var(--bg);padding:16px;border-radius:var(--radius-sm);overflow-x:auto"><code>npx wrangler deploy</code></pre>
+        <h2>绑定自定义域名</h2>
+        <p>在 Cloudflare Dashboard 中为你的域名添加 CNAME 记录，指向你的 Workers 子域名，即可实现自定义域名访问。</p>
+        <h2>为什么选择 Cloudflare Workers？</h2>
+        <ul>
+            <li>永久免费额度足够个人项目使用</li>
+            <li>全球 CDN 加速，无需额外配置</li>
+            <li>支持自定义 SSL 证书</li>
+            <li>与 Cloudflare Pages 无缝集成</li>
+            <li>无需服务器维护，零运维成本</li>
+        </ul>
+    </div></div></main>
+    <footer><div class="container"><div class="footer-links"><a href="../privacy.html">隐私政策</a><a href="../terms.html">服务条款</a><a href="../contact.html">联系我们</a></div><p>&copy; 2026 图萌工具</p></div></footer>
+</body>
+</html>

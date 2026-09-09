@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页性能优化指南 - CDN与缓存策略 | 图萌工具博客</title>
+    <meta name="description" content="学习网页性能优化技巧：CDN加速、缓存策略、代码压缩、资源加载优化等方法。">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header><div class="container header-inner"><a href="../index.html" class="logo">🔷 图萌工具</a><nav><a href="../index.html#tools">工具</a><a href="../blog.html">博客</a></nav></div></header>
+    <main><div class="container"><div class="article-content">
+        <h1>网页性能优化指南：CDN 加速与智能缓存策略</h1>
+        <div class="article-meta">发布日期：2026-09-08 &nbsp;|&nbsp; 分类：技术教程 &nbsp;|&nbsp; 阅读时间：7分钟</div>
+        <h2>为什么性能很重要？</h2>
+        <p>页面加载速度直接影响用户体验和搜索引擎排名。研究表明，页面加载时间每增加 1 秒，转化率下降 7%。Google 也明确将页面速度作为搜索排名的因素之一。</p>
+        <h2>CDN 加速原理</h2>
+        <p>内容分发网络（CDN）通过将网站资源缓存到全球各地的边缘节点，让用户从最近的服务器获取内容，大幅减少加载时间。</p>
+        <ul>
+            <li><strong>地理就近</strong>：用户连接到最近的边缘节点</li>
+            <li><strong>缓存复用</strong>：热门资源只需加载一次</li>
+            <li><strong>线路优化</strong>：CDN 提供优化的网络路由</li>
+        </ul>
+        <h2>缓存策略</h2>
+        <p>合理的缓存策略是性能优化的核心：</p>
+        <table style="width:100%;border-collapse:collapse;margin:20px 0">
+            <tr style="background:var(--bg)"><td style="padding:10px;border:1px solid var(--border)">策略</td><td style="padding:10px;border:1px solid var(--border)">适用场景</td><td style="padding:10px;border:1px solid var(--border)">TTL</td></tr>
+            <tr><td style="padding:10px;border:1px solid var(--border)">强缓存</td><td style="padding:10px;border:1px solid var(--border)">静态资源（CSS/JS/图片）</td><td style="padding:10px;border:1px solid var(--border)">长期（1年）</td></tr>
+            <tr style="background:var(--bg)"><td style="padding:10px;border:1px solid var(--border)">协商缓存</td><td style="padding:10px;border:1px solid var(--border)">HTML 页面</td><td style="padding:10px;border:1px solid var(--border)">按需验证</td></tr>
+            <tr><td style="padding:10px;border:1px solid var(--border)">清除缓存</td><td style="padding:10px;border:1px solid var(--border)">更新内容后</td><td style="padding:10px;border:1px solid var(--border)">手动触发</td></tr>
+        </table>
+        <h2>优化 Checklist</h2>
+        <ul>
+            <li>启用 Gzip/Brotli 压缩</li>
+            <li>压缩图片（WebP 格式优先）</li>
+            <li>减少 HTTP 请求数量</li>
+            <li>使用 CSS 变量减少重复代码</li>
+            <li>延迟加载非首屏图片</li>
+            <li>启用 CDN 并配置缓存规则</li>
+        </ul>
+    </div></div></main>
+    <footer><div class="container"><div class="footer-links"><a href="../privacy.html">隐私政策</a><a href="../terms.html">服务条款</a><a href="../contact.html">联系我们</a></div><p>&copy; 2026 图萌工具</p></div></footer>
+</body>
+</html>

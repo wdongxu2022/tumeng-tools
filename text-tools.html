@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本处理工具 - 字数统计/大小写转换/去重排序 | 图萌工具</title>
+    <meta name="description" content="免费在线文本处理工具：字数统计、大小写转换、文本去重、排序、换行符替换等实用功能。">
+    <meta name="keywords" content="文本处理,字数统计,大小写转换,去重排序,在线工具">
+    <link rel="stylesheet" href="assets/style-v2.css">
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo"><span>🔷</span>图萌工具</a>
+            <nav><a href="index.html#tools">所有工具</a><a href="blog.html">博客</a></nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <a href="index.html" class="back-link">← 返回首页</a>
+            <h1>文本处理工具</h1>
+            <p class="subtitle">多种文本处理功能，一站式解决</p>
+            <div class="qr-generator" style="grid-template-columns:1fr">
+                <div class="form-group">
+                    <label for="text-input">输入文本</label>
+                    <textarea id="text-input" placeholder="请在此粘贴或输入文本..." rows="8" style="width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:0.95rem;font-family:inherit;resize:vertical"></textarea>
+                </div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+                    <button class="preset-btn" onclick="textOp('upper')">转大写</button>
+                    <button class="preset-btn" onclick="textOp('lower')">转小写</button>
+                    <button class="preset-btn" onclick="textOp('capitalize')">首字母大写</button>
+                    <button class="preset-btn" onclick="textOp('reverse')">反转</button>
+                    <button class="preset-btn" onclick="textOp('trim')">去除首尾空格</button>
+                    <button class="preset-btn" onclick="textOp('dedup')">去重行</button>
+                    <button class="preset-btn" onclick="textOp('sort')">排序</button>
+                    <button class="preset-btn" onclick="textOp('sort-rev')">倒序排列</button>
+                    <button class="preset-btn" onclick="textOp('replace-newline')">换行转空格</button>
+                    <button class="preset-btn" onclick="textOp('count')">统计信息</button>
+                    <button class="preset-btn" onclick="textOp('uuid')">生成UUID</button>
+                    <button class="preset-btn" onclick="textOp('base64-encode')">Base64编码</button>
+                    <button class="preset-btn" onclick="textOp('base64-decode')">Base64解码</button>
+                </div>
+                <div class="form-group">
+                    <label>处理结果</label>
+                    <textarea id="text-output" rows="8" readonly style="width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:0.95rem;background:var(--bg);color:var(--text);resize:vertical"></textarea>
+                </div>
+                <div class="qr-actions" style="justify-content:flex-start">
+                    <button class="action-btn" onclick="copyResult()">📋 复制结果</button>
+                    <button class="action-btn" onclick="clearAll()">🗑️ 清空</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-links"><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a><a href="contact.html">联系我们</a></div>
+            <p>&copy; 2026 图萌工具</p>
+        </div>
+    </footer>
+    <script>
+        function textOp(op) {
+            const input = document.getElementById('text-input').value;
+            let result = '';
+            switch(op) {
+                case 'upper': result = input.toUpperCase(); break;
+                case 'lower': result = input.toLowerCase(); break;
+                case 'capitalize': result = input.replace(/\\b\\w/g, c => c.toUpperCase()); break;
+                case 'reverse': result = input.split('').reverse().join(''); break;
+                case 'trim': result = input.split('\\n').map(l=>l.trim()).join('\\n'); break;
+                case 'dedup': result = [...new Set(input.split('\\n'))].join('\\n'); break;
+                case 'sort': result = input.split('\\n').sort().join('\\n'); break;
+                case 'sort-rev': result = input.split('\\n').sort().reverse().join('\\n'); break;
+                case 'replace-newline': result = input.replace(/\\n/g, ' '); break;
+                case 'count':
+                    const lines=input.split('\\n').length, words=input.trim()?input.trim().split(/\\s+/).length:0;
+                    const chars=input.length, chinese=(input.match(/[^\\x00-\\xff]/g)||[]).length;
+                    result = '行数: '+lines+'\\n字数(含空格): '+chars+'\\n字符数(不含空格): '+(chars-(input.match(/\\s/g)||[]).length)\\n中文/全角字符: '+chinese+'\\n单词数: '+words;
+                    break;
+                case 'uuid': result = crypto.randomUUID(); break;
+                case 'base64-encode': result = btoa(unescape(encodeURIComponent(input))); break;
+                case 'base64-decode': try { result = decodeURIComponent(escape(atob(input.trim()))); } catch(e) { result = '解码失败，请检查输入'; } break;
+            }
+            document.getElementById('text-output').value = result;
+        }
+        function copyResult() {
+            const output = document.getElementById('text-output');
+            output.select(); navigator.clipboard.writeText(output.value).then(()=>alert('已复制到剪贴板'));
+        }
+        function clearAll() {
+            document.getElementById('text-input').value = '';
+            document.getElementById('text-output').value = '';
+        }
+    </script>
+</body>
+</html>

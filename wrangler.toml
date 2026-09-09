@@ -1,7 +1,7 @@
-[pages]
-branch = "main"
-build_command = ""
-directory = ""
-dist = "."
+name = "tumeng"
+main = "assets/index.html"
+compatibility_date = "2024-01-01"
+assets = { directory = "., not_found = "index.html" }
 
-[env.production]
+[observability]
+enabled = true

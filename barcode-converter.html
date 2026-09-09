@@ -88,11 +88,11 @@
             document.getElementById('qr-input-group').style.display = type === 'qr' ? 'block' : 'none';
             document.getElementById('ean-input-group').style.display = type === 'ean13' ? 'block' : 'none';
             document.getElementById('upc-input-group').style.display = type === 'upca' ? 'block' : 'none';
-            if (type === 'qr') generateQR();
+            if (type === 'qr') generateBarcode();
             else if (type === 'ean13') generateEAN13();
             else if (type === 'upca') generateUPCA();
         }
-        function generateQR() {
+        function generateBarcode() {
             const text = document.getElementById('barcode-text').value.trim();
             if (!text) return;
             try {
@@ -189,7 +189,7 @@
             else if(type==='email') ta.value='mailto:test@example.com';
             else if(type==='wifi') ta.value='WIFI:T:WPA;S:MyNetwork;P:MyPass;;';
             else ta.value='这是一段测试文字';
-            generateQR();
+            generateBarcode();
         }
         function downloadBarcode(format) {
             const canvas = document.getElementById('barcode-canvas');
